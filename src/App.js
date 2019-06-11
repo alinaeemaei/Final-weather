@@ -14,7 +14,7 @@ class App extends Component {
     foreCastDayLongButton: true,
     firstRun: true,
     placeholder: "enter city",
-    newCity: "tehran",
+
     City: "",
     date: "",
     country: "",
@@ -27,15 +27,43 @@ class App extends Component {
     isDay: 0,
     humidity: "",
     feelslike: "",
-    wind: ""
+    wind: "",
+    windSpeed: ""
   };
 
   componentDidMount = async e => {
-    if (this.state.newCity !== "") {
+    if (this.state.searchName !== "") {
       const api = await fetch(
         `https://api.apixu.com/v1/forecast.json?key=1652ea732ca848b7bd6100429192205&q=${
           this.state.searchName
         }&days=10`
+      );
+      const data = await api.json();
+      this.setState({
+        City: data.location.name,
+        country: data.location.country,
+        date: data.location.localtime,
+        temp: data.current.temp_c,
+        image: data.current.condition.icon,
+        condition: data.current.condition.text,
+        text: "",
+        placeholder: this.state.text,
+        isDay: data.current.is_day,
+        humidity: data.current.humidity,
+        feelslike: data.current.feelslike_c,
+        forecastDay: data.forecast.forecastday,
+        wind: data.current.wind_kph
+      });
+      console.log(this.state.isDay);
+    }
+    this.isdayHandler(this.state.isDay);
+    this.windSpeedHandler(this.state.wind);
+  };
+
+  getdata = async fullname => {
+    if (this.state.searchName !== "") {
+      const api = await fetch(
+        `https://api.apixu.com/v1/forecast.json?key=1652ea732ca848b7bd6100429192205&q=${fullname}&days=10`
       );
       const data = await api.json();
       this.setState({
@@ -85,17 +113,16 @@ class App extends Component {
       speed = 5;
     }
 
-    document.getElementById(
-      "w1"
-    ).style.animation = `App-wind-spin infinite ${speed}s linear`;
+    this.setState({ windSpeed: speed });
     console.log(wind);
     console.log(speed);
   }
 
   SearchListhadler(item) {
-    console.log(this.state.searchName);
     this.navbarHandler();
     this.setState({ searchName: item.fullname });
+    this.getdata(item.fullname);
+    console.log(item.fullname);
   }
   navbarHandler() {
     if (this.state.opennav === true) {
@@ -158,6 +185,7 @@ class App extends Component {
     return (
       <div className="home">
         <Navbar
+          state={this.state}
           navbarHandler={this.navbarHandler.bind(this)}
           SearchListhadler={this.SearchListhadler.bind(this)}
         />

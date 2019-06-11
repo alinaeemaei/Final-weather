@@ -88,6 +88,7 @@ class Content extends Component {
                     src="http://chittagongit.com/download/343647"
                     alt="windIcon"
                   />
+                  <p className="list-gap" />
                 </div>
               </div>
             </div>

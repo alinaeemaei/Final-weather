@@ -3,7 +3,7 @@ import "./Navbar.css";
 import ChangeLocation from "../ChangeLocation/ChangeLocation";
 
 class Navbar extends Component {
-  state = { opennav: true, ChangeLocation: "change Location" };
+  state = this.props.state;
 
   render() {
     return (
@@ -17,7 +17,7 @@ class Navbar extends Component {
             href="#"
             onClick={this.props.navbarHandler}
           >
-            {this.state.ChangeLocation}
+            {this.props.state.ChangeLocation}
           </a>
         </nav>
         <div id="open" className="sidenav">

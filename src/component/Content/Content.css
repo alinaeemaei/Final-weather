@@ -134,7 +134,8 @@
   background-color: #000000d2;
   border: 1px solid rgb(100, 100, 100);
   height: auto;
-  margin: 4px;
+  margin: 8px;
+  margin-bottom: 30px;
 }
 .current-base {
   display: flex;
@@ -159,7 +160,7 @@
 }
 .list-gap {
   border: 1px whitesmoke;
-  border-style: dotted;
+  border-style: none none dashed none;
 }
 .simple-flex {
   display: flex;
@@ -175,16 +176,20 @@
 .wind {
   display: flex;
   flex-direction: row;
-  justify-items: flex-end;
+}
+.wind p {
+  flex: 1;
 }
 .wind-logo {
+  align-self: center;
+  justify-content: center;
   animation: wind-spin infinite 10s linear;
-  width: 60px;
-  max-width: 60px;
-  height: 60px;
-  max-height: 60px;
+  width: 40px;
+  max-width: 40px;
+  height: 40px;
+  max-height: 40px;
   pointer-events: none;
-  margin-left: auto;
+
   filter: invert(100%);
 }
 @keyframes wind-spin {

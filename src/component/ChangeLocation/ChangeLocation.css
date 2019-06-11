@@ -1,0 +1,85 @@
+.changeLocation {
+  background-color: black;
+}
+.search-list {
+  list-style: none;
+  padding: 0%;
+}
+.list {
+  display: flex;
+  width: 100%;
+}
+.list-click {
+  flex: 70%;
+}
+.list-click :hover {
+  background-color: rgba(247, 247, 247, 0.082);
+  transition: 0.5s;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.list-detail {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.city {
+  background: transparent;
+  margin-left: 5%;
+  font-size: 1rem;
+  flex: 2;
+  order: 1;
+}
+.country {
+  font-size: 0.8rem;
+  flex: 2;
+  order: 2;
+}
+.temp {
+  flex: 1;
+  order: 3;
+  justify-self: center;
+}
+.icon {
+  flex: 1;
+  margin-right: 15%;
+  padding-left: 5%;
+  order: 4;
+  justify-self: flex-start;
+  width: 40px;
+  max-width: 40px;
+  height: 40px;
+  max-width: 40px;
+}
+.close-dive {
+  margin-right: 4%;
+  align-self: center;
+}
+.gap {
+  background-color: gainsboro;
+  height: 2px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.close {
+  flex: 100px;
+  width: 30px;
+  max-width: 30px;
+  height: 30px;
+  max-width: 30px;
+  order: 5;
+
+  z-index: 6;
+}
+.close-dive :hover {
+  transition: 0.2s;
+  cursor: pointer;
+  width: 35px;
+  max-width: 35px;
+  height: 35px;
+  max-width: 35px;
+}

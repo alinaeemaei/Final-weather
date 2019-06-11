@@ -1,0 +1,56 @@
+.autoComplete {
+  overflow: hidden;
+  left: 0%;
+  right: 0%;
+  width: 100%;
+  z-index: 1;
+}
+.autoComplete form {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.autoComplete input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.autoComplete input[type="text"] {
+  background-color: #f1f1f1;
+  width: 100%;
+  flex: 4;
+}
+
+.autoComplete input[type="submit"] {
+  background-color: DodgerBlue;
+  color: #fff;
+  flex: 1;
+}
+.autoComplete ul {
+  padding-inline-start: 0;
+  position: absolute;
+  list-style: none;
+  background: rgb(230, 230, 230);
+  border: 1px solid #ccc;
+  border-top: none;
+  z-index: 5;
+  /*position the autocomplete items to be the same width as the container:*/
+  left: 0;
+  right: 0;
+  top: 23px;
+}
+.autoComplete li {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+.autoComplete ul :hover {
+  background-color: #e9e9e9;
+}
+.autoComplete ul :active {
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}

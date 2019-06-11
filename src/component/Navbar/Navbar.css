@@ -1,0 +1,41 @@
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 5vh;
+  height: 6vh;
+  background: rgba(0, 0, 0, 0.795);
+  color: white;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  width: 100%;
+  z-index: 2;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+.nav-item {
+  font-size: 2rem;
+  width: 20%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.change-location {
+  background: transparent;
+  transition: 0.5s;
+}
+.sidenav {
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 0;
+  background: rgba(0, 0, 0, 0.76);
+  position: absolute;
+  z-index: 3;
+  overflow: hidden;
+  transition: 0.5s;
+}

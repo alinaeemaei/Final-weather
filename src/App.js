@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Navbar from "./component/Navbar/Navbar";
 import Content from "./component/Content/Content";
-import ChangeLocation from "./component/ChangeLocation/ChangeLocation";
 import "./App.css";
-
+console.log("goz");
 class App extends Component {
   state = {
     searchName: "rasht",
@@ -40,14 +39,14 @@ class App extends Component {
     this.windSpeedHandler(this.state.wind);
   }
   resize() {
-    if (window.innerWidth > 600) {
+    if (window.innerWidth > 641) {
       this.setState({ ChangeLocation: "" });
       document.getElementById("open").style.width = "300px";
       document.getElementById("open").style.position = "fixed";
       document.getElementById("baseid").style.marginLeft = "300px";
 
       this.setState({ ChangeLocation: "" });
-    } else if (window.innerWidth <= 600 && window.outerWidth > 1000) {
+    } else if (window.innerWidth <= 641 && window.outerWidth > 1000) {
       this.setState({ ChangeLocation: "Change Location " });
       document.getElementById("open").style.width = "0";
       document.getElementById("open").style.position = "absolute";
@@ -100,11 +99,11 @@ class App extends Component {
     //get from api 0and 1 for day and night and we change background
     if (a === 0) {
       document.body.style.background = "linear-gradient(270deg, #334, #115)";
-      document.body.style.backgroundSize = "450% 450%";
+      document.body.style.backgroundSize = "800% 800%";
     } else if (a === 1) {
       document.body.style.background =
-        "linear-gradient(120deg, #3075e2 0%, #ecf9ff 120%)";
-      document.body.style.backgroundSize = "450% 450%";
+        "linear-gradient(120deg, #259999 0%, #ecf9ff 120%)";
+      document.body.style.backgroundSize = "800% 800%";
     }
     // console.log("bib", a);
   }

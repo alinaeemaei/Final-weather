@@ -34,6 +34,7 @@ class App extends Component {
   componentDidMount() {
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
+
     this.getdata("theran");
     this.isdayHandler(this.state.isDay);
     this.windSpeedHandler(this.state.wind);
@@ -42,18 +43,17 @@ class App extends Component {
     if (window.innerWidth > 600) {
       this.setState({ ChangeLocation: "" });
       document.getElementById("open").style.width = "300px";
-      document.getElementById("open").style.background = "rgba(0, 0, 50, .8)";
       document.getElementById("open").style.position = "fixed";
       document.getElementById("baseid").style.marginLeft = "300px";
 
       this.setState({ ChangeLocation: "" });
-    } else if (window.innerWidth < 600) {
-      this.setState({ ChangeLocation: "Change location" });
+    } else if (window.innerWidth <= 600 && window.outerWidth > 1000) {
+      this.setState({ ChangeLocation: "Change Location " });
       document.getElementById("open").style.width = "0";
-      document.getElementById("baseid").style.marginLeft = "0%";
-      document.getElementById("open").style.background = "rgba(0, 0, 0, 0.76)";
       document.getElementById("open").style.position = "absolute";
+      document.getElementById("baseid").style.marginLeft = "0";
     }
+    console.log(window.outerWidth);
   }
   navbarHandler() {
     if (this.state.opennav === true) {

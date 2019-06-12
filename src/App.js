@@ -14,7 +14,6 @@ class App extends Component {
     foreCastDayLongButton: true,
     firstRun: true,
     placeholder: "enter city",
-
     City: "",
     date: "",
     country: "",
@@ -31,34 +30,11 @@ class App extends Component {
     windSpeed: ""
   };
 
-  componentDidMount = async e => {
-    if (this.state.searchName !== "") {
-      const api = await fetch(
-        `https://api.apixu.com/v1/forecast.json?key=1652ea732ca848b7bd6100429192205&q=${
-          this.state.searchName
-        }&days=10`
-      );
-      const data = await api.json();
-      this.setState({
-        City: data.location.name,
-        country: data.location.country,
-        date: data.location.localtime,
-        temp: data.current.temp_c,
-        image: data.current.condition.icon,
-        condition: data.current.condition.text,
-        text: "",
-        placeholder: this.state.text,
-        isDay: data.current.is_day,
-        humidity: data.current.humidity,
-        feelslike: data.current.feelslike_c,
-        forecastDay: data.forecast.forecastday,
-        wind: data.current.wind_kph
-      });
-      console.log(this.state.isDay);
-    }
+  componentDidMount() {
+    this.getdata("theran");
     this.isdayHandler(this.state.isDay);
     this.windSpeedHandler(this.state.wind);
-  };
+  }
 
   getdata = async fullname => {
     if (this.state.searchName !== "") {
@@ -81,41 +57,41 @@ class App extends Component {
         forecastDay: data.forecast.forecastday,
         wind: data.current.wind_kph
       });
-      console.log(this.state.isDay);
+      // console.log(this.state.isDay);
     }
     this.isdayHandler(this.state.isDay);
     this.windSpeedHandler(this.state.wind);
   };
   isdayHandler(a) {
+    //get from api 0and 1 for day and night and we change background
     if (a === 0) {
       document.body.style.background = "linear-gradient(270deg, #334, #115)";
-      document.body.style.backgroundSize = "400% 400%";
-    } else {
-      document.body.style.backgroun =
+    } else if (a === 1) {
+      document.body.style.background =
         "linear-gradient(120deg, #3075e2 0%, #ecf9ff 120%)";
     }
-    // console.log(a);
+    // console.log("bib", a);
   }
 
   windSpeedHandler(wind) {
     var speed = 0;
     if (wind > 0 && wind <= 5) {
-      speed = 30;
-    } else if (wind > 5 && wind <= 10) {
       speed = 25;
+    } else if (wind > 5 && wind <= 10) {
+      speed = 21;
     } else if (wind > 10 && wind <= 15) {
-      speed = 20;
+      speed = 16;
     } else if (wind > 15 && wind <= 20) {
-      speed = 15;
+      speed = 11;
     } else if (wind > 20 && wind <= 25) {
-      speed = 10;
+      speed = 6;
     } else if (wind > 25 && wind < 50) {
-      speed = 5;
+      speed = 1;
     }
 
     this.setState({ windSpeed: speed });
-    console.log(wind);
-    console.log(speed);
+    // console.log(wind);
+    // console.log(speed);
   }
 
   SearchListhadler(item) {
@@ -181,10 +157,12 @@ class App extends Component {
       });
     }
   }
+
   render() {
     return (
       <div className="home">
         <Navbar
+          RemoveHandler={this.RemoveHandler}
           state={this.state}
           navbarHandler={this.navbarHandler.bind(this)}
           SearchListhadler={this.SearchListhadler.bind(this)}

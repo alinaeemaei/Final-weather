@@ -21,7 +21,10 @@ class Navbar extends Component {
           </a>
         </nav>
         <div id="open" className="sidenav">
-          <ChangeLocation SearchListhadler={this.props.SearchListhadler} />
+          <ChangeLocation
+            RemoveHandler={this.props.RemoveHandler}
+            SearchListhadler={this.props.SearchListhadler}
+          />
         </div>
       </div>
     );

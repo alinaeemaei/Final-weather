@@ -83,6 +83,11 @@ class Content extends Component {
                   <p>{this.props.state.wind} kmh</p>
 
                   <img
+                    style={{
+                      animation: `wind-spin infinite ${
+                        this.props.state.windSpeed
+                      }s linear`
+                    }}
                     id="w1"
                     className="wind-logo"
                     src="http://chittagongit.com/download/343647"

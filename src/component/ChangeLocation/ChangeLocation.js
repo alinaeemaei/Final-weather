@@ -73,6 +73,15 @@ class ChangeLocation extends Component {
     }
   };
 
+  RemoveHandler(index) {
+    var listN = this.state.list;
+    listN.splice(index, 1);
+    this.setState({
+      list: listN
+    });
+    console.log("bob", listN);
+  }
+
   render() {
     return (
       <div>
@@ -87,9 +96,12 @@ class ChangeLocation extends Component {
         <div>
           <ul className="search-list">
             {this.state.list.map((item, index) => (
-              <li onClick={() => this.props.SearchListhadler(item)} key={index}>
+              <li key={index}>
                 <div className="list">
-                  <div className="list-click">
+                  <div
+                    onClick={() => this.props.SearchListhadler(item)}
+                    className="list-click"
+                  >
                     <div className="list-detail">
                       <p className="city">{item.city},</p>
                       <p className="country">{item.country},</p>
@@ -97,7 +109,10 @@ class ChangeLocation extends Component {
                       <img className="icon" src={item.icon} alt="icon" />
                     </div>
                   </div>
-                  <div className="close-dive">
+                  <div
+                    onClick={() => this.RemoveHandler(index)}
+                    className="close-dive"
+                  >
                     <img
                       className="close"
                       src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-and-shapes-3/177800/143-512.png"

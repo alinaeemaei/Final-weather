@@ -20,6 +20,12 @@
   cursor: pointer;
   border-radius: 10px;
 }
+.list-click :active {
+  background-color: rgb(238, 214, 94);
+  transition: 0.5s;
+  cursor: pointer;
+  border-radius: 10px;
+}
 .list-detail {
   color: white;
   display: flex;

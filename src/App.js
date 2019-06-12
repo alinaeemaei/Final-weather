@@ -66,9 +66,11 @@ class App extends Component {
     //get from api 0and 1 for day and night and we change background
     if (a === 0) {
       document.body.style.background = "linear-gradient(270deg, #334, #115)";
+      document.body.style.backgroundSize = "450% 450%";
     } else if (a === 1) {
       document.body.style.background =
         "linear-gradient(120deg, #3075e2 0%, #ecf9ff 120%)";
+      document.body.style.backgroundSize = "450% 450%";
     }
     // console.log("bib", a);
   }

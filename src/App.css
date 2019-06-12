@@ -3,7 +3,7 @@ body {
   width: 100%;
   font-family: "Overpass", sans-serif;
   background: linear-gradient(270deg, #25ff99, #25cff5);
-  background-size: 400% 400%;
+  background-size: 450% 450%;
   -webkit-animation: AnimationName 10s ease infinite;
   -moz-animation: AnimationName 10s ease infinite;
   animation: AnimationName 10s ease infinite;

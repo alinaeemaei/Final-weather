@@ -27,15 +27,49 @@ class App extends Component {
     humidity: "",
     feelslike: "",
     wind: "",
-    windSpeed: ""
+    windSpeed: "",
+    classname: ""
   };
 
   componentDidMount() {
+    window.addEventListener("resize", this.resize.bind(this));
+    this.resize();
     this.getdata("theran");
     this.isdayHandler(this.state.isDay);
     this.windSpeedHandler(this.state.wind);
   }
+  resize() {
+    if (window.innerWidth > 600) {
+      this.setState({ ChangeLocation: "" });
+      document.getElementById("open").style.width = "300px";
+      document.getElementById("open").style.background = "rgba(0, 0, 50, .8)";
+      document.getElementById("open").style.position = "fixed";
+      document.getElementById("baseid").style.marginLeft = "300px";
 
+      this.setState({ ChangeLocation: "" });
+    } else if (window.innerWidth < 600) {
+      this.setState({ ChangeLocation: "Change location" });
+      document.getElementById("open").style.width = "0";
+      document.getElementById("baseid").style.marginLeft = "0%";
+      document.getElementById("open").style.background = "rgba(0, 0, 0, 0.76)";
+      document.getElementById("open").style.position = "absolute";
+    }
+  }
+  navbarHandler() {
+    if (this.state.opennav === true) {
+      this.setState({
+        opennav: false,
+        ChangeLocation: "cancel"
+      });
+      document.getElementById("open").style.width = "100%";
+    } else {
+      this.setState({
+        opennav: true,
+        ChangeLocation: "Change Location"
+      });
+      document.getElementById("open").style.width = "0%";
+    }
+  }
   getdata = async fullname => {
     if (this.state.searchName !== "") {
       const api = await fetch(
@@ -97,22 +131,14 @@ class App extends Component {
   }
 
   SearchListhadler(item) {
-    this.navbarHandler();
+    if (window.innerWidth < 600) {
+      this.navbarHandler();
+    }
     this.setState({ searchName: item.fullname });
     this.getdata(item.fullname);
     console.log(item.fullname);
   }
-  navbarHandler() {
-    if (this.state.opennav === true) {
-      document.getElementById("open").style.width = "100%";
-      document.body.style.position = "fixed";
-      this.setState({ opennav: false, ChangeLocation: "Cancel" });
-    } else {
-      document.getElementById("open").style.width = "0";
-      document.body.style.position = "relative";
-      this.setState({ opennav: true, ChangeLocation: "Change Location" });
-    }
-  }
+
   dateHandler(item) {
     var d = new Date(item.date);
     var n = d.getDay();
@@ -164,9 +190,9 @@ class App extends Component {
     return (
       <div className="home">
         <Navbar
+          navbarHandler={this.navbarHandler.bind(this)}
           RemoveHandler={this.RemoveHandler}
           state={this.state}
-          navbarHandler={this.navbarHandler.bind(this)}
           SearchListhadler={this.SearchListhadler.bind(this)}
         />
         <Content

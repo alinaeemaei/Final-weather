@@ -32,7 +32,7 @@ a {
   left: 0;
   right: 0;
   height: 100%;
-  width: 0;
+  width: 0%;
   background: rgba(0, 0, 0, 0.76);
   position: absolute;
   z-index: 3;

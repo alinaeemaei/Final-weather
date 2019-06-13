@@ -8,7 +8,7 @@ class App extends Component {
     searchName: "rasht",
     opennav: true,
     ChangeLocation: "change Location",
-    foreCastDayLong: 4,
+    foreCastDayLong: 7,
     foreCastDayLongName: "More day",
     foreCastDayLongButton: true,
     firstRun: true,
@@ -39,26 +39,35 @@ class App extends Component {
     this.windSpeedHandler(this.state.wind);
   }
   resize() {
-    if (window.innerWidth > 641) {
-      this.setState({ ChangeLocation: "" });
-      document.getElementById("open").style.width = "300px";
-      document.getElementById("open").style.position = "fixed";
-      document.getElementById("baseid").style.marginLeft = "300px";
+    var maxW = window.matchMedia("(max-width:641px)");
+    var minW = window.matchMedia("(min-width:641px)");
+    if (window.matchMedia("(min-device-width:960px)").matches) {
+      if (minW.matches) {
+        this.setState({ ChangeLocation: "" });
 
-      this.setState({ ChangeLocation: "" });
-    } else if (window.innerWidth <= 641 && window.outerWidth > 1000) {
-      this.setState({ ChangeLocation: "Change Location " });
+        document.getElementById("open").style.width = "300px";
+        document.getElementById("open").style.position = "fixed";
+        document.getElementById("baseid").style.marginLeft = "300px";
+        this.setState({ ChangeLocation: "" });
+      } else if (maxW.matches) {
+        this.setState({ ChangeLocation: "Change Location " });
+
+        document.getElementById("open").style.width = "0";
+        document.getElementById("open").style.position = "fixed";
+        document.getElementById("baseid").style.marginLeft = "0";
+      }
+    } else if (window.matchMedia("(orientation:landscape)").matches) {
       document.getElementById("open").style.width = "0";
-      document.getElementById("open").style.position = "absolute";
-      document.getElementById("baseid").style.marginLeft = "0";
+      document.getElementById("home").style.display = "block";
+    } else if (window.matchMedia("(orientation:portrait)").matches) {
+      document.getElementById("home").style.display = "none";
     }
-    console.log(window.outerWidth);
   }
   navbarHandler() {
     if (this.state.opennav === true) {
       this.setState({
         opennav: false,
-        ChangeLocation: "cancel"
+        ChangeLocation: "Done"
       });
       document.getElementById("open").style.width = "100%";
     } else {
@@ -98,12 +107,12 @@ class App extends Component {
   isdayHandler(a) {
     //get from api 0and 1 for day and night and we change background
     if (a === 0) {
-      document.body.style.background = "linear-gradient(270deg, #334, #115)";
-      document.body.style.backgroundSize = "800% 800%";
+      document.body.style.background = "linear-gradient(270deg, #337, #001)";
+      document.body.style.backgroundSize = "400% 400%";
     } else if (a === 1) {
       document.body.style.background =
-        "linear-gradient(120deg, #259999 0%, #ecf9ff 120%)";
-      document.body.style.backgroundSize = "800% 800%";
+        "linear-gradient(120deg, #25aa99 0%, #ecf9ff 120%)";
+      document.body.style.backgroundSize = "400% 400%";
     }
     // console.log("bib", a);
   }
@@ -172,22 +181,25 @@ class App extends Component {
   moreDayHandler() {
     if (this.state.foreCastDayLongButton === true) {
       this.setState({
-        foreCastDayLong: 7,
         foreCastDayLongButton: false,
         foreCastDayLongName: "less day"
       });
+      document.getElementById("forcastid").style.height = "550px";
     } else {
       this.setState({
-        foreCastDayLong: 4,
         foreCastDayLongButton: true,
         foreCastDayLongName: "More day"
       });
+      document.getElementById("forcastid").style.height = "350px";
     }
   }
 
   render() {
     return (
-      <div className="home">
+      <div>
+        <div id="home" className="home">
+          <p>Plase Rotate Screen to Portrate</p>
+        </div>
         <Navbar
           navbarHandler={this.navbarHandler.bind(this)}
           RemoveHandler={this.RemoveHandler}

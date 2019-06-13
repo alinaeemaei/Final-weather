@@ -6,7 +6,7 @@ class ChangeLocation extends Component {
   state = {
     newcityFullname: "",
     newCity: "",
-    placeholder: "",
+    placeholder: "Search your Location",
     searchValu: [],
     list: []
   };
@@ -79,7 +79,6 @@ class ChangeLocation extends Component {
     this.setState({
       list: listN
     });
-    console.log("bob", listN);
   }
 
   render() {

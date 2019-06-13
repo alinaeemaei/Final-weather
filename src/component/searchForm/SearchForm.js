@@ -11,7 +11,6 @@ const SearchForm = props => {
           type="text"
           placeholder={props.state.placeholder}
         />
-        <input className="inputSubmit" type="submit" />
       </form>
       <ul onClick={props.SearchListHandle}>
         {props.state.searchValu.slice(0, 4).map((item, index) => (

@@ -25,7 +25,7 @@ class Content extends Component {
           </div>
         </div>
         <div className=" details">
-          <div className="forcast">
+          <div id="forcastid" className="forcast">
             <h2 className="forcast-tag">Forecast</h2>
             <ul className="ul">
               {this.props.state.forecastDay

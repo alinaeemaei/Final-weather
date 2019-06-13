@@ -1,24 +1,23 @@
 import React, { Component } from "react";
 import "./Navbar.css";
 import ChangeLocation from "../ChangeLocation/ChangeLocation";
+import { styles } from "ansi-colors";
 
 class Navbar extends Component {
   state = this.props.state;
 
   render() {
+    if (this.props.state.ChangeLocation === "") {
+      var classN = "change-location-hiden";
+    } else {
+      classN = "change";
+    }
     return (
       <div>
         <nav>
-          <a href="#" className="nav-item">
-            Weather
-          </a>
-          <a
-            className="change-Location"
-            href="#"
-            onClick={this.props.navbarHandler}
-          >
+          <p className={classN} onClick={this.props.navbarHandler}>
             {this.props.state.ChangeLocation}
-          </a>
+          </p>
         </nav>
         <div id="open" className="sidenav">
           <ChangeLocation

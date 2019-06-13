@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Final-weather/static/css/main.b81224e9.chunk.css",
-    "main.js": "/Final-weather/static/js/main.4296ba36.chunk.js",
-    "main.js.map": "/Final-weather/static/js/main.4296ba36.chunk.js.map",
+    "main.js": "/Final-weather/static/js/main.e36eb60f.chunk.js",
+    "main.js.map": "/Final-weather/static/js/main.e36eb60f.chunk.js.map",
     "runtime~main.js": "/Final-weather/static/js/runtime~main.d21ef19e.js",
     "runtime~main.js.map": "/Final-weather/static/js/runtime~main.d21ef19e.js.map",
     "static/js/2.e15fc79f.chunk.js": "/Final-weather/static/js/2.e15fc79f.chunk.js",
     "static/js/2.e15fc79f.chunk.js.map": "/Final-weather/static/js/2.e15fc79f.chunk.js.map",
     "index.html": "/Final-weather/index.html",
-    "precache-manifest.70f783e3f6053da1d9e39e3a3a9412f6.js": "/Final-weather/precache-manifest.70f783e3f6053da1d9e39e3a3a9412f6.js",
+    "precache-manifest.95922336e7eb800aa0901e63602d1774.js": "/Final-weather/precache-manifest.95922336e7eb800aa0901e63602d1774.js",
     "service-worker.js": "/Final-weather/service-worker.js",
     "static/css/main.b81224e9.chunk.css.map": "/Final-weather/static/css/main.b81224e9.chunk.css.map"
   }

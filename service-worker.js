@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.0/workbox-sw.js");
 
 importScripts(
-  "/Final-weather/precache-manifest.9f1ea97285e5ef695609b192665d2adb.js"
+  "/Final-weather/precache-manifest.0a28beaa7cf9bbf6dadb462837d49ea6.js"
 );
 
 self.addEventListener('message', (event) => {

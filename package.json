@@ -8,7 +8,9 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-screen-orientation": "0.0.3",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "react-toasts": "^3.0.3",
+    "toasted-notes": "^2.1.5"
   },
   "scripts": {
     "start": "react-scripts start",

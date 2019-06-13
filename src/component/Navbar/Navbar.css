@@ -6,6 +6,7 @@
   align-items: center;
 }
 .change {
+  font-size: 0.7rem;
   cursor: pointer;
   top: 0%;
   right: 0;

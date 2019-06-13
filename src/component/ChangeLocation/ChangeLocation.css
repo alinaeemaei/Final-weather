@@ -6,7 +6,6 @@
 .search-list {
   list-style: none;
   padding: 0%;
-  overflow: scroll;
 }
 .list {
   display: flex;
@@ -16,6 +15,7 @@
   flex: 70%;
   background: rgba(0, 0, 0, 0.288);
   border-radius: 10px;
+  animation: add-search 0.5s linear;
 }
 .list-click :hover {
   background-color: rgb(75, 75, 75);
@@ -88,8 +88,23 @@
 .close-dive :hover {
   transition: 0.2s;
   cursor: pointer;
-  width: 35px;
-  max-width: 35px;
-  height: 35px;
-  max-width: 35px;
+
+  animation: spin 0.5s linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+}
+@keyframes add-search {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

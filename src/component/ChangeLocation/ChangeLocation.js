@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import SearchForm from "../searchForm/SearchForm";
 import "./ChangeLocation.css";
+import { error } from "util";
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
 
 class ChangeLocation extends Component {
   state = {
@@ -18,21 +21,29 @@ class ChangeLocation extends Component {
 
   autoCompleteText = async e => {
     const search = e.target.value;
-    const url = await fetch(
+    fetch(
       `https://api.apixu.com/v1/search.json?key=1652ea732ca848b7bd6100429192205&q=${search}`
-    );
-    var data = await url.json();
-
-    if (search.length >= 3) {
-      this.setState({
-        searchValu: data,
-        newCity: search
-      });
-    } else {
-      this.setState({
-        searchValu: []
-      });
-    }
+    )
+      .then(Response => {
+        if (Response.ok) {
+          return Response.json();
+        } else {
+          throw new error("something went rong");
+        }
+      })
+      .then(data => {
+        if (search.length >= 3) {
+          this.setState({
+            searchValu: data,
+            newCity: search
+          });
+        } else {
+          this.setState({
+            searchValu: []
+          });
+        }
+      })
+      .catch(error => {});
   };
 
   SearchListHandle(event) {
@@ -46,29 +57,42 @@ class ChangeLocation extends Component {
 
   getWeatherInfo = async e => {
     e.preventDefault();
-
     if (this.state.newCity !== "") {
-      const api = await fetch(
+      fetch(
         `https://api.apixu.com/v1/forecast.json?key=1652ea732ca848b7bd6100429192205&q=${
           this.state.newCity
         }&days=6`
-      );
-      const data = await api.json();
-      this.setState({
-        newCity: "",
-        placeholder: this.state.text,
-        text: "",
-        list: [
-          ...this.state.list,
-          {
-            city: data.location.name,
-            country: data.location.country,
-            temp: data.current.temp_c,
-            icon: data.current.condition.icon,
-            fullname: this.state.text
+      )
+        .then(Response => {
+          if (Response.ok) {
+            return Response.json();
+          } else {
+            throw new error("your search not found");
           }
-        ]
-      });
+        })
+        .then(data => {
+          this.setState({
+            newCity: "",
+            placeholder: this.state.text,
+            text: "",
+            list: [
+              ...this.state.list,
+              {
+                city: data.location.name,
+                country: data.location.country,
+                temp: data.current.temp_c,
+                icon: data.current.condition.icon,
+                fullname: this.state.text
+              }
+            ]
+          });
+        })
+        .catch(error => {
+          toaster.notify("Your search not found", {
+            duration: 3000
+          });
+        });
+
       console.log(this.state.list);
     }
   };
@@ -92,7 +116,7 @@ class ChangeLocation extends Component {
             SearchListHandle={this.SearchListHandle.bind(this)}
           />
         </div>
-        <div>
+        <div className="search-items">
           <ul className="search-list">
             {this.state.list.map((item, index) => (
               <li key={index}>

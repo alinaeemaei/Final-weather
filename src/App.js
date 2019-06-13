@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Navbar from "./component/Navbar/Navbar";
 import Content from "./component/Content/Content";
 import "./App.css";
+import { error } from "util";
+
 console.log("goz");
 class App extends Component {
   state = {
@@ -45,9 +47,9 @@ class App extends Component {
       if (minW.matches) {
         this.setState({ ChangeLocation: "" });
 
-        document.getElementById("open").style.width = "300px";
+        document.getElementById("open").style.width = "250px";
         document.getElementById("open").style.position = "fixed";
-        document.getElementById("baseid").style.marginLeft = "300px";
+        document.getElementById("baseid").style.marginLeft = "250px";
         this.setState({ ChangeLocation: "" });
       } else if (maxW.matches) {
         this.setState({ ChangeLocation: "Change Location " });
@@ -79,7 +81,39 @@ class App extends Component {
     }
   }
   getdata = async fullname => {
-    if (this.state.searchName !== "") {
+    fetch(
+      `https://api.apixu.com/v1/forecast.json?key=1652ea732ca848b7bd6100429192205&q=${fullname}&days=10`
+    )
+      .then(Response => {
+        if (Response.ok) {
+          return Response.json();
+        } else {
+          throw new error("somthing wrong");
+          console.log("wrong");
+        }
+      })
+      .then(responseJason => {
+        const data = responseJason;
+        this.setState({
+          City: data.location.name,
+          country: data.location.country,
+          date: data.location.localtime,
+          temp: data.current.temp_c,
+          image: data.current.condition.icon,
+          condition: data.current.condition.text,
+          text: "",
+          placeholder: this.state.text,
+          isDay: data.current.is_day,
+          humidity: data.current.humidity,
+          feelslike: data.current.feelslike_c,
+          forecastDay: data.forecast.forecastday,
+          wind: data.current.wind_kph
+        });
+      })
+      .catch(error => {
+        alert(error, "try again");
+      });
+    /*   if (this.state.searchName !== "") {
       const api = await fetch(
         `https://api.apixu.com/v1/forecast.json?key=1652ea732ca848b7bd6100429192205&q=${fullname}&days=10`
       );
@@ -100,7 +134,7 @@ class App extends Component {
         wind: data.current.wind_kph
       });
       // console.log(this.state.isDay);
-    }
+    }*/
     this.isdayHandler(this.state.isDay);
     this.windSpeedHandler(this.state.wind);
   };
@@ -111,8 +145,8 @@ class App extends Component {
       document.body.style.backgroundSize = "400% 400%";
     } else if (a === 1) {
       document.body.style.background =
-        "linear-gradient(120deg, #25aa99 0%, #ecf9ff 120%)";
-      document.body.style.backgroundSize = "400% 400%";
+        "linear-gradient(120deg, #11cc85 0%, #1177ff 120%)";
+      document.body.style.backgroundSize = "300% 300%";
     }
     // console.log("bib", a);
   }
@@ -190,7 +224,7 @@ class App extends Component {
         foreCastDayLongButton: true,
         foreCastDayLongName: "More day"
       });
-      document.getElementById("forcastid").style.height = "350px";
+      document.getElementById("forcastid").style.height = "380px";
     }
   }
 

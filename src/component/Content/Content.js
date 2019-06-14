@@ -25,6 +25,11 @@ class Content extends Component {
             <div className="temp-c-numb">
               <p className="tempc">{this.props.state.temp}</p>
               <p className="cantigrad">.c</p>
+              <img
+                className="summery-icon"
+                src={this.props.state.image}
+                alt="icon"
+              />
             </div>
             <p className="discription">{this.props.state.condition}</p>
           </div>

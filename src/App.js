@@ -4,7 +4,6 @@ import Content from "./component/Content/Content";
 import "./App.css";
 import { error } from "util";
 
-console.log("goz");
 class App extends Component {
   state = {
     searchName: "rasht",
@@ -35,10 +34,7 @@ class App extends Component {
   componentDidMount() {
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
-
-    this.getdata("theran");
-    this.isdayHandler(this.state.isDay);
-    this.windSpeedHandler(this.state.wind);
+    this.getdata("tehran");
   }
   resize() {
     var maxW = window.matchMedia("(max-width:641px)");
@@ -47,14 +43,16 @@ class App extends Component {
       if (minW.matches) {
         this.setState({ ChangeLocation: "" });
 
-        document.getElementById("open").style.width = "250px";
+        document.getElementById("open").style.width = "300px";
+        document.getElementById("open").style.left = "0px";
         document.getElementById("open").style.position = "fixed";
-        document.getElementById("baseid").style.marginLeft = "250px";
+        document.getElementById("baseid").style.marginLeft = "300px";
+
         this.setState({ ChangeLocation: "" });
       } else if (maxW.matches) {
         this.setState({ ChangeLocation: "Change Location " });
 
-        document.getElementById("open").style.width = "0";
+        document.getElementById("open").style.left = "-600px";
         document.getElementById("open").style.position = "fixed";
         document.getElementById("baseid").style.marginLeft = "0";
       }
@@ -72,15 +70,23 @@ class App extends Component {
         ChangeLocation: "Done"
       });
       document.getElementById("open").style.width = "100%";
+      document.getElementById("open").style.left = "0px";
+
+      document.getElementById("baseid").style.filter = "blur(5px)";
     } else {
       this.setState({
         opennav: true,
         ChangeLocation: "Change Location"
       });
-      document.getElementById("open").style.width = "0%";
+
+      document.getElementById("baseid").style.filter = "blur(0px)";
+      document.getElementById("open").style.width = "100%";
+
+      document.getElementById("open").style.left = "-600px";
     }
   }
   getdata = async fullname => {
+    console.log(fullname);
     fetch(
       `https://api.apixu.com/v1/forecast.json?key=1652ea732ca848b7bd6100429192205&q=${fullname}&days=10`
     )
@@ -89,7 +95,6 @@ class App extends Component {
           return Response.json();
         } else {
           throw new error("somthing wrong");
-          console.log("wrong");
         }
       })
       .then(responseJason => {
@@ -109,39 +114,17 @@ class App extends Component {
           forecastDay: data.forecast.forecastday,
           wind: data.current.wind_kph
         });
+        this.isdayHandler(this.state.isDay);
+        this.windSpeedHandler(this.state.wind);
       })
       .catch(error => {
         alert(error, "try again");
       });
-    /*   if (this.state.searchName !== "") {
-      const api = await fetch(
-        `https://api.apixu.com/v1/forecast.json?key=1652ea732ca848b7bd6100429192205&q=${fullname}&days=10`
-      );
-      const data = await api.json();
-      this.setState({
-        City: data.location.name,
-        country: data.location.country,
-        date: data.location.localtime,
-        temp: data.current.temp_c,
-        image: data.current.condition.icon,
-        condition: data.current.condition.text,
-        text: "",
-        placeholder: this.state.text,
-        isDay: data.current.is_day,
-        humidity: data.current.humidity,
-        feelslike: data.current.feelslike_c,
-        forecastDay: data.forecast.forecastday,
-        wind: data.current.wind_kph
-      });
-      // console.log(this.state.isDay);
-    }*/
-    this.isdayHandler(this.state.isDay);
-    this.windSpeedHandler(this.state.wind);
   };
   isdayHandler(a) {
     //get from api 0and 1 for day and night and we change background
     if (a === 0) {
-      document.body.style.background = "linear-gradient(270deg, #337, #001)";
+      document.body.style.background = "linear-gradient(270deg, #337, #134)";
       document.body.style.backgroundSize = "400% 400%";
     } else if (a === 1) {
       document.body.style.background =

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./Navbar.css";
 import ChangeLocation from "../ChangeLocation/ChangeLocation";
-import { styles } from "ansi-colors";
 
 class Navbar extends Component {
   state = this.props.state;

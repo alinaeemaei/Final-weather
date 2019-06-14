@@ -67,8 +67,10 @@
   max-width: 40px;
 }
 .close-dive {
-  margin-right: 4%;
+  margin-right: 5px;
+  margin-left: 5px;
   align-self: center;
+  cursor: pointer;
 }
 .gap {
   background-color: gainsboro;
@@ -86,9 +88,8 @@
   z-index: 6;
 }
 .close-dive :hover {
+  opacity: 1;
   transition: 0.2s;
-  cursor: pointer;
-
   animation: spin 0.5s linear;
 }
 

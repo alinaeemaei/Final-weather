@@ -26,12 +26,12 @@
   transition: border 0.2s ease-in-out;
 }
 .sidenav {
+  box-shadow: 2px 4px 10px #00000055;
   top: 0%;
-  left: 0;
-  right: 0;
   height: 100%;
-  width: 0%;
-  background: rgba(15, 15, 15, 0.904);
+  width: 100%;
+  left: -600px;
+  background: rgba(15, 15, 15, 0.596);
   position: fixed;
   z-index: 3;
   overflow: hidden;

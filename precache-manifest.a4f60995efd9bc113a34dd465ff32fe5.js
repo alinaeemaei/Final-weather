@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f44e46256967bb70afa5624aa54890f0",
+    "revision": "bda6653df28cdc5bd110196e89bfa71e",
     "url": "/Final-weather/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Final-weather/static/css/2.dc646829.chunk.css"
   },
   {
-    "revision": "7c89408d099dbcfe0a12",
+    "revision": "bf1d08eb8cad95f98220",
     "url": "/Final-weather/static/css/main.97947a71.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Final-weather/static/js/2.2b273fe9.chunk.js"
   },
   {
-    "revision": "7c89408d099dbcfe0a12",
-    "url": "/Final-weather/static/js/main.c23186d3.chunk.js"
+    "revision": "bf1d08eb8cad95f98220",
+    "url": "/Final-weather/static/js/main.aafe93b1.chunk.js"
   },
   {
     "revision": "edd3c9be4b13d892d4d0",

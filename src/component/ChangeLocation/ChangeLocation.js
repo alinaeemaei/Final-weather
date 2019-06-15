@@ -16,11 +16,13 @@ class ChangeLocation extends Component {
   };
 
   onChangeHandler(event) {
+    // get seacrch text from input and give it to autocompleteText for serch it in url
     this.setState({ text: event.target.value });
     this.autoCompleteText(event);
   }
 
   autoCompleteText = async e => {
+    // search in url for search sugestion  and when choose item push it into state
     const search = e.target.value;
     fetch(
       `https://api.apixu.com/v1/search.json?key=1652ea732ca848b7bd6100429192205&q=${search}`
@@ -57,6 +59,7 @@ class ChangeLocation extends Component {
   }
 
   getWeatherInfo = async e => {
+    //when choose item in the list of item you search for cuntry this method giv forcast detail for each search item
     e.preventDefault();
     if (this.state.newCity !== "") {
       fetch(
@@ -99,6 +102,7 @@ class ChangeLocation extends Component {
   };
 
   RemoveHandler(index) {
+    //remove item from list of location search in change location
     var listN = this.state.list;
     listN.splice(index, 1);
     this.setState({
@@ -119,7 +123,7 @@ class ChangeLocation extends Component {
         </div>
         <div className="search-items">
           <ul className="search-list">
-            {this.state.list.map((item, index) => (
+            {this.state.list.slice(0, 10).map((item, index) => (
               <li key={index}>
                 <div className="list">
                   <div

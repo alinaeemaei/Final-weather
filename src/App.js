@@ -7,7 +7,7 @@ import { error } from "util";
 
 class App extends Component {
   state = {
-    searchName: "rasht",
+    searchName: "rashts",
     opennav: true,
     ChangeLocation: "change Location",
     foreCastDayLong: 7,
@@ -33,13 +33,16 @@ class App extends Component {
   };
 
   componentDidMount() {
+    //when start app this method runing first and run resize and get data
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
     this.getdata("tehran");
   }
+
   resize() {
-    var maxW = window.matchMedia("(max-width:641px)");
-    var minW = window.matchMedia("(min-width:641px)");
+    // set resize listener for pc or tablet for resizeing and rearnge the boxes and navbar and all ui component
+    var maxW = window.matchMedia("(max-width:600px)");
+    var minW = window.matchMedia("(min-width:600px)");
     if (window.matchMedia("(min-device-width:960px)").matches) {
       if (minW.matches) {
         this.setState({ ChangeLocation: "" });
@@ -64,7 +67,10 @@ class App extends Component {
       document.getElementById("home").style.display = "none";
     }
   }
+
   navbarHandler() {
+    // when screen set for mobile phone or when window resize width  our side nav going to hide the we use change location botton to show it
+
     if (this.state.opennav === true) {
       this.setState({
         opennav: false,
@@ -87,6 +93,7 @@ class App extends Component {
     }
   }
   getdata = async fullname => {
+    // get data from url with fetch and response  and then use setstate to push value to variable
     console.log(fullname);
     fetch(
       `https://api.apixu.com/v1/forecast.json?key=1652ea732ca848b7bd6100429192205&q=${fullname}&days=10`
@@ -159,13 +166,18 @@ class App extends Component {
   }
 
   SearchListhadler(item) {
-    this.navbarHandler();
+    // get text from search component and give value to the getdata()
+    var maxW = window.matchMedia("(max-width:600px)");
+    if (maxW.matches) {
+      this.navbarHandler();
+    }
     this.setState({ searchName: item.fullname });
     this.getdata(item.fullname);
     // console.log(item.fullname);
   }
 
   dateHandler(item) {
+    // convert date to day
     var d = new Date(item.date);
     var n = d.getDay();
     var day;
@@ -197,6 +209,7 @@ class App extends Component {
   }
 
   moreDayHandler() {
+    //in forcast we show 4 day forcast detail whit this method you can choose between 4 and 7 day is good for ui
     if (this.state.foreCastDayLongButton === true) {
       this.setState({
         foreCastDayLongButton: false,

@@ -11,7 +11,8 @@ class ChangeLocation extends Component {
     newCity: "",
     placeholder: "Search your Location",
     searchValu: [],
-    list: []
+    list: [],
+    newItem: ""
   };
 
   onChangeHandler(event) {

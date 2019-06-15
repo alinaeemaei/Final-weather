@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Navbar from "./component/Navbar/Navbar";
 import Content from "./component/Content/Content";
 import "./App.css";
+import toaster from "toasted-notes";
 import { error } from "util";
 
 class App extends Component {
@@ -118,7 +119,9 @@ class App extends Component {
         this.windSpeedHandler(this.state.wind);
       })
       .catch(error => {
-        alert(error, "try again");
+        toaster.notify(error, {
+          duration: 3000
+        });
       });
   };
   isdayHandler(a) {
@@ -156,12 +159,10 @@ class App extends Component {
   }
 
   SearchListhadler(item) {
-    if (window.innerWidth < 600) {
-      this.navbarHandler();
-    }
+    this.navbarHandler();
     this.setState({ searchName: item.fullname });
     this.getdata(item.fullname);
-    console.log(item.fullname);
+    // console.log(item.fullname);
   }
 
   dateHandler(item) {
